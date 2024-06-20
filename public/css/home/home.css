@@ -1,0 +1,88 @@
+*{
+    font-family: "Oswald", serif;
+    text-decoration: none; 
+}
+
+body{
+    text-align: center;
+}
+
+.languages /*   ul list     */
+{
+    list-style-type: none;
+    display:flex;
+    flex-direction: row;
+    justify-content: right;
+    margin:2vh;
+}
+
+.language{
+    width:2%;
+}
+
+#hero-area-logo
+{
+    top:0;
+    max-height: 25vh;
+    width: auto;
+    object-fit: contain;
+}
+
+#navbar-list
+{
+    list-style-type: none;
+    display:flex;
+    flex-direction:row;
+    height:auto;
+    width:100%;
+    justify-content:center;
+
+}
+
+#navbar-list li
+{
+    width:10%;
+}
+
+#navbar-list li a
+{
+    color: rgb(246 179 57);
+    font-size: 1.5rem;
+}
+
+.banner
+{
+    height:75vh;
+    width:auto;
+    display: grid;
+    grid-template-columns: 1fr 2fr  2fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 10px;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 30px;
+    background-color: aqua;
+}
+
+pre{
+    align-self: center;
+    margin:0;
+    margin-top:50px;
+    font-size: 1.5rem;        /*nomainīt pie mobile*/
+    text-transform:uppercase;
+}
+
+#dienas{
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    justify-self: end;
+    
+}
+#laiki{
+    grid-column: 3 / 4;
+    grid-row: 1 / 2;
+    justify-self: start;
+}
+
+
+

@@ -9,9 +9,7 @@ use App\Http\Controllers\HomeController;    //added
   - kontakti & par mums 
  */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class,'home'])->name('home');
 
 Route::get('/cart', function () {
     return view('cart');
