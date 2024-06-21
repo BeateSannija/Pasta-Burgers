@@ -2,19 +2,19 @@
 <html lang="en">
 <head>
 
-    @include('admin.head')
+    @include('admin.sections.head')
 
 </head>
 <body>
     <header>
 
-        @include('admin.header')
+        @include('admin.sections.header')
 
     </header>
 
     <section class="main">
         
-        @include('admin.sidebar')
+        @include('admin.sections.sidebar')
         
         <div class="caption">
             <h1> LABOT ĒDIENKARTI </h1>

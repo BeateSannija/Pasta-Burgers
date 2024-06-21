@@ -5,5 +5,5 @@
 </section>
 <form id="logout" method="POST" action="{{ route('logout') }}">
     @csrf
-    <input id="logout-submit" type="submit" value="Logout">
+    <input id="logout-submit" type="submit" value="Atslēgties">
 </form>

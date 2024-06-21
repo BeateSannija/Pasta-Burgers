@@ -45,9 +45,9 @@ li
 .main
 {
     display:grid;
-    grid-template-columns: 1fr 1fr  1fr;
+    grid-template-columns: 1fr 2fr;
     grid-template-rows: auto;
-    gap: 10px;
+    gap: 20px;
 
 }
 
@@ -56,8 +56,6 @@ li
     display:flex;
     flex-direction: column;
     grid-row: 2 / end;
-    
-
 }
 
 .menu-item
@@ -66,7 +64,6 @@ li
     font-size: 1.5rem;
     text-transform: uppercase;
     border-bottom: 1px solid rgb(35 31 32);
-   
 }
 
 .menu-item a
@@ -74,16 +71,6 @@ li
     color:black;
 }
 
-#menu li a:hover {
-    background-color: #ddd; /* Light gray background on hover */
-}
-
-.highlight {
-    background-color: #4CAF50; /* Example: Green background for highlighted item */
-    color: white; /* Example: White text for highlighted item */
-}
-
-/*      DROPDOWN FOR "Pasūtījumi" (parāda vai nu pieprasījumus vai tos, kas procesā)    "*/
 .caption
 {
     grid-column: 2/3;
@@ -91,6 +78,111 @@ li
     text-transform: uppercase;
 }
 
+.highlight
+{
+    color:#F59932;
+}
+
+#add-dish
+{
+    grid-column: 1/2;
+    grid-row: 1/2;
+    justify-self: end;
+}
+
+#add-dish a {
+
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    background-color: #4CAF50;
+    color: white; 
+    text-decoration: none; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    transition: background-color 0.3s, box-shadow 0.3s; 
+}
+
+#add-dish a:hover {
+    background-color: #45a049;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#add-dish a:focus,
+#add-dish a:active {
+    outline: none; 
+    background-color: #3e8e41; /* Even darker background for active state */
+}
+
+/* Ēdieni */
+    /*   TABLE   */
+.dishes-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.dishes-table th, .dishes-table td {
+    padding: 15px;
+    text-align: left;
+}
+
+.dishes-table th {
+    background-color: #f8ae59;
+    color: white;
+    text-transform: uppercase;
+    font-weight: lighter;
+}
+
+.dishes-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.dishes-table tr:hover {
+    background-color: #ddd;
+}
+
+.dishes-table td {
+    border-bottom: 1px solid #ddd;
+}
+
+.dishes-table tr:last-child td {
+    border-bottom: none;
+}
+
+    /* DELETE button */
+.btn {
+    background-color: #dc3545;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn :hover {
+    background-color: #c82333;
+}
+
+.btn :active {
+    background-color: #bd2130;
+}
+
+.btn :focus {
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.5);
+}
+
+.btn-success
+{
+    background-color: #45a049;
+}
 
 
 
