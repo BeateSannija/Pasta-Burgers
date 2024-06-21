@@ -1,0 +1,99 @@
+*{
+    font-family: "Oswald", serif;
+    text-decoration: none; 
+}
+
+li
+{
+    list-style: none;
+}
+
+.logo-container
+{
+    height:20vh;
+    place-items: center;
+    text-align: center;
+    background: linear-gradient(#F8E847, #F59932);
+}
+
+#logo
+{
+    top:0;
+    max-height: 100%;
+    width: auto;
+}
+
+#logout
+{
+    position:absolute;
+    margin:2vh;
+    top:0;
+    right:0;
+}
+
+#logout-submit
+{
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    background-color: black; 
+    color: white; 
+    border: none; 
+    cursor: pointer; 
+}
+
+.main
+{
+    display:grid;
+    grid-template-columns: 1fr 1fr  1fr;
+    grid-template-rows: auto;
+    gap: 10px;
+
+}
+
+#menu
+{
+    display:flex;
+    flex-direction: column;
+    grid-row: 2 / end;
+    
+
+}
+
+.menu-item
+{
+    padding:1em;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    border-bottom: 1px solid rgb(35 31 32);
+   
+}
+
+.menu-item a
+{
+    color:black;
+}
+
+#menu li a:hover {
+    background-color: #ddd; /* Light gray background on hover */
+}
+
+.highlight {
+    background-color: #4CAF50; /* Example: Green background for highlighted item */
+    color: white; /* Example: White text for highlighted item */
+}
+
+/*      DROPDOWN FOR "Pasūtījumi" (parāda vai nu pieprasījumus vai tos, kas procesā)    "*/
+.caption
+{
+    grid-column: 2/3;
+    justify-self: center;
+    text-transform: uppercase;
+}
+
+
+
+
+
+
+

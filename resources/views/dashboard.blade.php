@@ -12,6 +12,7 @@
                 Logout
             </button>
         </form>
+        <h1> HELLO</h1>
     </div>
 </div>
 @endsection

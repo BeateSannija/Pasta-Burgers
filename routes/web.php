@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;    //added
+use App\Http\Controllers\AdminController;    //added
+use App\Http\Middleware\Admin;
 
 /*
   - profile?
@@ -27,4 +29,6 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-route::get('admin/dashboard', [HomeController::class, 'index'])->middleware(['auth', 'admin']);
+route::get('admin/dashboard', [HomeController::class, 'index'])->middleware(['auth', 'admin'])->name('admin.dashboard');
+
+route::get('view_updateMenu', [AdminController::class, 'view_updateMenu'])->middleware(['auth', 'admin']);

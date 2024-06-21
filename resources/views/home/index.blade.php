@@ -16,7 +16,7 @@
                     <li class="language"><a href>ENG</a>
             </div>
             <div>
-                <a href="{{ route('home') }}"><img id="hero-area-logo" src="images/PASTA-BURGERS-uzraksts-bez-fona.png" alt="Pasta Burgers"></a>
+                <a href="{{ route('home')}}"><img id="hero-area-logo" src="images/PASTA-BURGERS-uzraksts-bez-fona.png" alt="Pasta Burgers"></a>
             </div>
             <nav class="navbar">
                 <ul id="navbar-list">
