@@ -44,6 +44,7 @@ li
 
 .main
 {
+    margin:15px;
     display:grid;
     grid-template-columns: 1fr 2fr;
     grid-template-rows: auto;
@@ -114,7 +115,7 @@ li
     background-color: #3e8e41; /* Even darker background for active state */
 }
 
-/* Ēdieni */
+/* DISHES VIEW */
     /*   TABLE   */
 .dishes-table {
     width: 100%;
@@ -184,6 +185,88 @@ li
 {
     background-color: #45a049;
 }
+    /* PAGINATION */
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+    
+.pagination {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+    
+.pagination li a,
+.pagination li span {
+    display: block;
+    padding: 10px 15px;
+    color: #333;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+    outline: none !important;
+}
+    
+.pagination li a:hover,
+.pagination li a:focus {
+    background-color: #f8ae59 !important;
+    color: white !important;
+}
+    
+.pagination li.active span {
+    background-color: #f8ae59 !important;
+    color: white !important;
+    border: 1px solid white !important;
+}
+
+
+/* UPDATE MENU  */
+.dish-menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    text-align: center;
+}
+
+.dish-card {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    padding: 20px;
+    width: 250px;
+    box-sizing: border-box;
+    transition: box-shadow 0.3s ease;
+}
+
+.dish-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.dish-card h3 {
+    margin-top: 0;
+    font-size: 1.5em;
+}
+
+.dish-card p {
+    margin: 0.5em 0;
+}
+
+.status-field {
+    margin-top: 10px;
+}
+
+
+    
+
+
 
 
 

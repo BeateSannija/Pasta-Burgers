@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 use App\Models\Dish;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+
 
 class AdminController extends Controller
 {
     public function view_updateMenu()
     {
-        return view('admin.updateMenu');
+        $dishes = Dish::all();
+        return view('admin.updateMenu', compact('dishes'));
     }
 
     public function view_requests()
@@ -19,9 +22,10 @@ class AdminController extends Controller
 
     public function view_dishes()
     {
-        $dishes = Dish::all();  // Fetch all dishes from the database
+        //$dishes = Dish::all();  // Fetch all dishes from the database
+        $dishes = Dish::paginate(5); 
         return view('admin.dishes', compact('dishes'));  // Return the view with the list of dishes
-        //return view('admin.dishes');
+
     }
     public function view_time()
     {
@@ -61,9 +65,17 @@ class AdminController extends Controller
     public function delete_dish($id)
     {
         $dish = Dish::find($id);
+        //image deleting from public folder
+        $image_path = public_path('storage/' . $dish->image);
+        if(file_exists($image_path))
+        {
+            unlink($image_path);
+        }
+
         $dish->delete();
         return redirect()->back();
     }
+
 
     public function edit_dish($id)
     {
@@ -89,4 +101,27 @@ class AdminController extends Controller
         $dish->save();
         return redirect()->route('admin.view_dishes');
     }
+
+
+    //to update status (only)
+    public function updateStatus(Request $request, $id)
+    {
+        // Validate the request data
+        $request->validate([
+            'dish-status' => 'required|string|in:Pieejams,Nav pieejams',
+        ]);
+
+        $dish = Dish::find($id);
+        if (!$dish) {
+            return redirect()->back()->with('error', 'Dish not found!');
+        }
+
+        // Update the dish status
+        $dish->status = $request->input('dish-status');
+        $dish->save();
+
+        return redirect()->route('admin.updateMenu')->with('success', 'Dish status updated successfully!');
+    }
+
+
 }

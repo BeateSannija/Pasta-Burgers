@@ -3,6 +3,7 @@
 <head>
 
     @include('admin.sections.head')
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
 </head>
 <body>
@@ -32,7 +33,7 @@
                     <th></th>
                 </tr>  
 
-                @foreach($dishes as $dish)
+        @foreach($dishes as $dish)
                 <tr>
                     <td>{{ $dish->dish_name }}</td>
                     <td>{{ $dish->dish_description }}</td>
@@ -41,15 +42,15 @@
                     <td><a class="btn btn-success" href="{{url('edit_dish', $dish->id)}}">Labot</a></td>
                     <td><a class="btn btn-danger" href="{{url('delete_dish', $dish->id)}}">Dzēst</a></td>
                 </tr>
-            @endforeach
+        @endforeach
 
             </table>
         </div>
-
+        
     </section> 
-
+    <div class="pagination">
+        {{$dishes->links()}}
+    </div>
     
-
-
 </body>
 </html>

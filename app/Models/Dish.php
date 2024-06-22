@@ -16,4 +16,6 @@ class Dish extends Model
         'image',         // Add image to fillable
         'status',        // Add status to fillable
     ];
+
+    
 }

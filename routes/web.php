@@ -42,9 +42,9 @@ route::get('view_addDish', [AdminController::class, 'view_addDish'])->middleware
 route::post('add_dish', [AdminController::class, 'add_dish'])->middleware(['auth', 'admin']);  //create
 route::get('delete_dish/{id}', [AdminController::class, 'delete_dish'])->middleware(['auth', 'admin']);   //delete
 
-
-route::get('edit_dish/{id}', [AdminController::class, 'edit_dish'])->middleware(['auth', 'admin']);
+route::get('edit_dish/{id}', [AdminController::class, 'edit_dish'])->middleware(['auth', 'admin']);     //update
 route::post('update_dish/{id}', [AdminController::class, 'update_dish'])->middleware(['auth', 'admin']);
 
-//route::get('edit_dish/{id}', [AdminController::class, 'edit_dish'])->middleware(['auth', 'admin']);   //edit(for update)
-//route::post('update_dish/{id}', [AdminController::class, 'update_dish'])->middleware(['auth', 'admin']);   //update
+
+//for status editing
+Route::post('dishes/updateStatus/{id}', [AdminController::class, 'updateStatus'])->name('dishes.updateStatus');
