@@ -39,7 +39,12 @@ route::get('view_orderHistory', [AdminController::class, 'view_orderHistory'])->
 route::get('view_addDish', [AdminController::class, 'view_addDish'])->middleware(['auth', 'admin']); //page for adding dish
 
         //CRUD
-route::post('dishes', [AdminController::class, 'store'])->middleware(['auth', 'admin'])->name('dishes.store');  //create
+route::post('add_dish', [AdminController::class, 'add_dish'])->middleware(['auth', 'admin']);  //create
 route::get('delete_dish/{id}', [AdminController::class, 'delete_dish'])->middleware(['auth', 'admin']);   //delete
-route::get('edit_dish/{id}', [AdminController::class, 'edit_dish'])->middleware(['auth', 'admin']);   //edit(for update)
-route::post('update_dish/{id}', [AdminController::class, 'update_dish'])->middleware(['auth', 'admin']);   //update
+
+
+route::get('edit_dish/{id}', [AdminController::class, 'edit_dish'])->middleware(['auth', 'admin']);
+route::post('update_dish/{id}', [AdminController::class, 'update_dish'])->middleware(['auth', 'admin']);
+
+//route::get('edit_dish/{id}', [AdminController::class, 'edit_dish'])->middleware(['auth', 'admin']);   //edit(for update)
+//route::post('update_dish/{id}', [AdminController::class, 'update_dish'])->middleware(['auth', 'admin']);   //update

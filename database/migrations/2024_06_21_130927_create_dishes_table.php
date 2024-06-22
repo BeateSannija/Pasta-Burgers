@@ -14,9 +14,11 @@ return new class extends Migration
         Schema::create('dishes', function (Blueprint $table) {
             $table->id();
             $table->string('dish_name');
-            $table->text('dish_description'); // Use text for potentially longer descriptions
+            $table->text('dish_description'); 
             $table->string('dish_category');
-            $table->decimal('dish_price', 8, 2); // Use decimal for currency
+            $table->decimal('dish_price', 8, 2); 
+            $table->string('image')->nullable(); // Add the image column
+            $table->string('status')->default('Nav pieejams'); // Add the status column
             $table->timestamps();
         });
     }

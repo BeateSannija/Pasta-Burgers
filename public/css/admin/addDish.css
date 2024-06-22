@@ -8,37 +8,15 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f8f8f8;
     padding: 20px;
-}
-
-header {
-    margin-bottom: 20px;
-}
-
-.main {
     display: flex;
-}
-
-.main .sidebar {
-    width: 250px;
-    margin-right: 20px;
-}
-
-.main .content {
-    flex-grow: 1;
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.caption {
-    text-align: center;
-    margin-bottom: 20px;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 form {
+    width: 100%;
     max-width: 500px;
-    margin: auto;
     background-color: white;
     padding: 20px;
     border-radius: 8px;
@@ -75,8 +53,13 @@ form {
 }
 
 #description {
-    height: 100px;
-    resize: vertical;
+    height: 100px; /* Increase height */
+    resize: vertical; /* Allow vertical resizing only */
+}
+
+.field input[type="file"] {
+    padding: 10px 0; /* Add some padding for file input */
+    display: block;
 }
 
 .btn {
@@ -91,6 +74,7 @@ form {
     border: none;
     cursor: pointer;
     transition: background-color 0.3s, box-shadow 0.3s;
+    margin-top: 10px; /* Add margin to separate the button from the file input */
 }
 
 .btn:hover {
@@ -109,3 +93,6 @@ form {
     box-shadow: 0 0 8px rgba(76, 175, 80, 0.2);
 }
 
+.field-file {
+    margin-bottom: 15px;
+}

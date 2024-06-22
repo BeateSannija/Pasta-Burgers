@@ -8,7 +8,7 @@
     <title>Pievienot ēdienu</title>
 </head>
 <body>
-    <form action="{{ url('update_dish', $dish->id) }}" method="POST">
+    <form action="{{ url('update_dish', $dish->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="field">
             <label for="dish-name">Nosaukums</label>
@@ -31,6 +31,15 @@
                 <option value="burgeru-komplekti" {{ $dish->dish_category == 'burgeru-komplekti' ? 'selected' : '' }}>Burgeru komplekti</option>
                 <option value="deserti" {{ $dish->dish_category == 'deserti' ? 'selected' : '' }}>Deserti</option>
             </select>
+        </div>
+        <div class="field">
+            <label for="image">Attēls</label>
+            <input type="file" name="image" id="image">
+            @if ($dish->image)
+                <div>
+                    <img src="{{ asset('storage/' . $dish->image) }}" alt="{{ $dish->dish_name }}" width="100">
+                </div>
+            @endif
         </div>
         <div class="field">
             <input class="btn btn-primary" type="submit" value="Saglabāt">

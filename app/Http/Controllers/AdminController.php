@@ -39,29 +39,23 @@ class AdminController extends Controller
     }
 
     // for 'Dish' Model
-    public function store(Request $request)
+    public function add_dish(Request $request)
     {
-        // Validate the request data
-        $request->validate([
-            'dish-name' => 'required|string|max:255',
-            'dish-description' => 'required|string',
-            'dish-category' => 'required|string',
-            'dish-price' => 'required|numeric',
-        ]);
+        $dish = new Dish;
+        $dish->dish_name = $request->input('dish-name');
+        $dish->dish_description = $request->input('dish-description');
+        $dish->dish_price = $request->input('dish-price');
+        $dish->dish_category = $request->input('dish-category');
 
-        $category = $request->input('dish-category');
-        \Illuminate\Support\Facades\Log::info('Submitted category: ' . $category);
-
-        // Create a new dish
-        Dish::create([
-            'dish_name' => $request->input('dish-name'),
-            'dish_description' => $request->input('dish-description'),
-            'dish_category' => $request->input('dish-category'),
-            'dish_price' => $request->input('dish-price'),
-        ]);
-
-        // Redirect to the update menu route with a success message
-        return redirect()->route('admin.view_dishes')->with('success', 'Dish added successfully!'); //here
+        if ($request->hasFile('image') && $request->file('image')->isValid()) 
+        {
+            $image = $request->file('image');
+            $imagename = time() . '.' . $image->getClientOriginalExtension();
+            $path = $image->storeAs('dishes', $imagename, 'public');
+            $dish->image = $path;
+        }
+        $dish->save();
+        return redirect()->route('admin.view_dishes');
     }
 
     public function delete_dish($id)
@@ -71,22 +65,28 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
-    public function edit_dish($id)      //edit
+    public function edit_dish($id)
     {
-        $dish = Dish::find($id);
-        
+        $dish = Dish::find($id);   
         return view('admin.edit_dish', compact('dish'));
     }
-    public function update_dish(Request $request, $id)
+
+    public function update_dish(Request $request,$id)
     {
-        $dish = Dish::find($id);
+        $dish = Dish::find($id); 
         $dish->dish_name = $request->input('dish-name');
         $dish->dish_description = $request->input('dish-description');
-        $dish->dish_category = $request->input('dish-category');
         $dish->dish_price = $request->input('dish-price');
+        $dish->dish_category = $request->input('dish-category');
 
+        if ($request->hasFile('image') && $request->file('image')->isValid()) 
+        {
+            $image = $request->file('image');
+            $imagename = time() . '.' . $image->getClientOriginalExtension();
+            $path = $image->storeAs('dishes', $imagename, 'public');
+            $dish->image = $path;
+        }
         $dish->save();
-        return redirect('/view_dishes');
+        return redirect()->route('admin.view_dishes');
     }
-
 }

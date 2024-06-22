@@ -8,7 +8,7 @@
     <title>Pievienot ēdienu</title>
 </head>
 <body>
-    <form action="{{ route('dishes.store') }}" method="POST">
+    <form action="{{ url('add_dish') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="field">
             <label for="dish-name">Nosaukums</label>
@@ -31,6 +31,10 @@
                 <option value="burgeru-komplekti">Burgeru komplekti</option>
                 <option value="deserti">Deserti</option>
             </select>
+        </div>
+        <div class="field">
+            <label for="image" >Attēls</label>
+            <input type="file" name="image">
         </div>
         <div class="field">
             <input class="btn btn-primary" type="submit" value="Pievienot">
