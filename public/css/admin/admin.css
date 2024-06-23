@@ -1,6 +1,8 @@
 *{
     font-family: "Oswald", serif;
     text-decoration: none; 
+    margin: 0;  /*added need to chack if looks nice*/
+    padding: 0;
 }
 
 li
@@ -228,10 +230,14 @@ li
 
 /* UPDATE MENU  */
 .dish-menu {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /*justify-content: space-around;*/
     text-align: center;
+    justify-content: center;
+    margin-top: 20px;
+    margin-left:10%;
+    margin-right:10%;
 }
 
 .dish-card {
@@ -241,7 +247,7 @@ li
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin: 10px;
     padding: 20px;
-    width: 250px;
+    width: 300px;
     box-sizing: border-box;
     transition: box-shadow 0.3s ease;
 }
@@ -261,6 +267,18 @@ li
 
 .status-field {
     margin-top: 10px;
+}
+
+.dish-card .img-box 
+{
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.dish-card .img-box img 
+{
+    width: 50%;
+    border-radius: 10px;
 }
 
 

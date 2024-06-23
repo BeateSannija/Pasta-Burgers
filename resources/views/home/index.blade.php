@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     
-    @include('home.head')
+    @include('home.sections.head')
 
 </head>
 <body>
@@ -10,29 +10,9 @@
     <section class="hero-area">
         <!--header section-->
         <header class="header-section">
-            <div >
-                <ul class="languages">
-                    <li class="language"><a href>LV</a>
-                    <li class="language"><a href>ENG</a>
-            </div>
-            <div>
-                <a href="{{ route('home')}}"><img id="hero-area-logo" src="images/PASTA-BURGERS-uzraksts-bez-fona.png" alt="Pasta Burgers"></a>
-            </div>
-            <nav class="navbar">
-                <ul id="navbar-list">
-                    <!--<li class="nav-item"><a href="{{ route('home') }}"><img id="logo" src="images/PASTA-BURGERS-uzraksts-bez-fona.png" alt="Pasta Burgers"></a></li>-->
-                    <li class="nav-item"><a href="#menu-caption">Ēdienkarte</a></li>
-                    <li class="nav-item"><a href="#about-us">Par mums</a></li>
-                    <li class="nav-item"><a href="#footer">Kontakti</a></li>
-                    <li class="nav-item"><a href="{{url('/login')}}">Pieslēgties</a></li> <!--add href to login page-->
-                    <li class="nav-item"><a href="{{url('/register')}}">Register</a></li> <!--add href to login page-->
-                    <li class="nav-item"><a href="">Grozs</a></li> <!--add href to cart page and add icon-->
-                </ul>
-                <!--<div class="user-option">
-                    <a href=""> Pieslēgties</a>
-                    <a href=""> Grozs</a>
-                </div>-->
-            </nav>
+            
+            @include('home.sections.header')
+
         </header>   
     </section>
 
@@ -49,13 +29,20 @@ svētdiena
         </pre>
         <pre id="laiki">
 nestrādājam
-12:00 - 22:00
-12:00 - 22:00
-12:00 - 22:00
+12:00 - 21:00
+12:00 - 21:00
+12:00 - 21:00
 12:00 - 22:00
 12:00 - 22:00
 nestrādājam
      </pre>  
+
+     <h3 id="order-time-caption">Pasūtījumus pieņemam: </h3>
+
+     <div class="grid-item">
+        <a href="" id="link-menu">Ēdienkarte<a>
+     </div>
+
     </section>
 
 <!--Contacts --later remove-->

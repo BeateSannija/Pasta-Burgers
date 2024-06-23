@@ -18,7 +18,7 @@ Route::get('/cart', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('home.index');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -46,5 +46,8 @@ route::get('edit_dish/{id}', [AdminController::class, 'edit_dish'])->middleware(
 route::post('update_dish/{id}', [AdminController::class, 'update_dish'])->middleware(['auth', 'admin']);
 
 
-//for status editing
+    //for status editing
 Route::post('dishes/updateStatus/{id}', [AdminController::class, 'updateStatus'])->name('dishes.updateStatus');
+
+//  ROUTES FOR USER
+route::get('view_menu', [HomeController::class, 'view_menu']);      //MENU VIEW

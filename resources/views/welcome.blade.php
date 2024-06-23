@@ -14,6 +14,7 @@
                 <li class="nav-item"><a href="#about-us">Par mums</a></li>
                 <li class="nav-item"><a href="#footer">Kontakti</a></li>
                 <li class="nav-item" id="to-order"><a href="#order">Pasūtījums</a></li>
+                <li>allalalla</li>
             </ul>
         </nav>
     </div>

@@ -23,7 +23,7 @@ class AdminController extends Controller
     public function view_dishes()
     {
         //$dishes = Dish::all();  // Fetch all dishes from the database
-        $dishes = Dish::paginate(5); 
+        $dishes = Dish::paginate(6); 
         return view('admin.dishes', compact('dishes'));  // Return the view with the list of dishes
 
     }

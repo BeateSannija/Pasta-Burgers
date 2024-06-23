@@ -29,6 +29,9 @@
                 <div class="dish-card">
                     <h3>{{ $dish->dish_name }}</h3>
                     <p>{{ $dish->dish_description }}</p>
+                    <div class="img-box">
+                        <img src="{{ asset('storage/' . $dish->image) }}" alt="{{ $dish->dish_name }}">
+                    </div>
                     <p>Kategorija: {{ $dish->dish_category }}</p>
                     <p>{{ $dish->dish_price }}</p>
 
