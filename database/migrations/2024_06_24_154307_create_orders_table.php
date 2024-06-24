@@ -13,9 +13,14 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable;
-            $table->string('status')->default('');
+            $table->unsignedBigInteger('user_id');
+            $table->string('name');
+            $table->enum('status', ['accepted', 'declined'])->nullable();
+            $table->enum('progress', ['in_progress', 'ready'])->nullable();
+            $table->timestamp('estimated_time')->nullable();
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

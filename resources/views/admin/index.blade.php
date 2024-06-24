@@ -17,11 +17,10 @@
 
         <div class="caption">
             <h2>Pasūtījumi</h2>
-            <div class="content">  
-                
-                <!--conetent-->
-                
-            </div>
+        </div>
+
+        <div>
+            HAHHAHAH
         </div>
         
     </section>    

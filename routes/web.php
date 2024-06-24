@@ -39,6 +39,7 @@ route::get('view_dishes', [AdminController::class, 'view_dishes'])->middleware([
 route::get('view_time', [AdminController::class, 'view_time'])->middleware(['auth', 'admin']);
 route::get('view_orderHistory', [AdminController::class, 'view_orderHistory'])->middleware(['auth', 'admin']);
 route::get('view_addDish', [AdminController::class, 'view_addDish'])->middleware(['auth', 'admin']); //page for adding dish
+route::post('update_order/{id}', [AdminController::class, 'update_order'])->middleware(['auth', 'admin']);
 
         //CRUD
 route::post('add_dish', [AdminController::class, 'add_dish'])->middleware(['auth', 'admin']);  //create
@@ -57,4 +58,4 @@ route::get('add_to_cart/{id}', [HomeController::class, 'add_to_cart'])->middlewa
 route::get('mycart', [HomeController::class, 'mycart'])->middleware(['auth', 'verified']);      //let verified stay?
 route::get('remove_item/{id}', [HomeController::class, 'remove_item'])->middleware(['auth', 'verified']);   //remove item from a cart
 
-//route::post('confirm_order', [HomeController::class, 'confirm_order'])->middleware(['auth', 'verified']); //confirm order
+route::post('create_order', [HomeController::class, 'create_order'])->middleware(['auth', 'verified']); //confirm order

@@ -4,10 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
 
 use App\Models\Dish;
 use App\Models\User;
 use App\Models\Cart;
+use App\Models\Order;
+use App\Models\OrderItem;
 
 class HomeController extends Controller
 {
@@ -27,11 +31,14 @@ class HomeController extends Controller
 
     public function home()
     {
-        if(Auth::id())      //checks if there is any logged in id
+        if(Auth::id())
         {
-            $user = Auth::user();   //checking if user is logged in
+            $user = Auth::user();
             $userid = $user->id;
-            $count = Cart::where('user_id',$userid)->count();
+            //$count = Cart::where('user_id',$userid)->count();
+            //$cart = Cart::where('user_id', $userid)->get(); //added
+            $count = Cart::where('user_id', $userid)->whereNull('order_id')->count();
+            $cart = Cart::where('user_id', $userid)->whereNull('order_id')->get();
         }
         else
         {
@@ -49,7 +56,10 @@ class HomeController extends Controller
         {
             $user = Auth::user();
             $userid = $user->id;
-            $count = Cart::where('user_id',$userid)->count();
+            //$count = Cart::where('user_id',$userid)->count();
+            //$cart = Cart::where('user_id', $userid)->get(); //added
+            $count = Cart::where('user_id', $userid)->whereNull('order_id')->count();
+            $cart = Cart::where('user_id', $userid)->whereNull('order_id')->get();
         }
         else
         {
@@ -74,16 +84,22 @@ class HomeController extends Controller
 
     public function mycart()
     {
-        //for count 
+        //for item count in the cart
         if(Auth::id())
         {
             $user = Auth::user();
             $userid = $user->id;
-            $count = Cart::where('user_id',$userid)->count();
-
-            $cart = Cart::where('user_id', $userid)->get(); //added
+            //$count = Cart::where('user_id',$userid)->count();
+            //$cart = Cart::where('user_id', $userid)->get(); //added
+            $count = Cart::where('user_id', $userid)->whereNull('order_id')->count();
+            $cart = Cart::where('user_id', $userid)->whereNull('order_id')->get();
         }
         //
+        else 
+        {
+            $count = 0;
+            $cart = collect();
+        }
 
         return view('home.mycart', compact('count', 'cart'));
     }
@@ -96,12 +112,34 @@ class HomeController extends Controller
     }
 
 
-    /*public function confirm_order()
+    public function create_order(Request $request)
     {
-        $order = new Order;
-        $cart = Cart::where('user_id', $userid)->get();
+        $user = Auth::user();
+        $cartItems = Cart::where('user_id', $user->id)->whereNull('order_id')->get();
 
-        f
+        if ($cartItems->isEmpty()) {
+            return redirect()->back()->with('error', 'Your cart is empty.');
+        }
 
-    }*/
+        // Create a new order
+        $order = Order::create([
+            'user_id' => $user->id,
+            'name' => $user->name,
+            'status' => null,
+            'progress' => null,
+            'estimated_time' => null,
+        ]);
+
+        // Assign order_id to cart items
+        foreach ($cartItems as $cartItem) {
+            $cartItem->order_id = $order->id;
+            $cartItem->save();
+        }
+
+        return redirect()->route('home')->with('success', 'Your order has been placed successfully!');
+    }
+    
+
+    
 }
+

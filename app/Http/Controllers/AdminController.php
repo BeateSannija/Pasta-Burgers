@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 use App\Models\Dish;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Carbon\Carbon;
 
 
 class AdminController extends Controller
@@ -14,30 +16,36 @@ class AdminController extends Controller
         return view('admin.updateMenu', compact('dishes'));
     }
 
-    public function view_requests()
+    public function view_requests()     //needs to show orders with no statuss yet
     {
+        //$orders = Order::all();
+        /*$orders = Order::with(['user', 'cartItems.dish'])->get();
+        return view('admin.requests', compact('orders'));*/
 
-        return view('admin.requests');
+        $orders = Order::with('cartItems.dish')->get();
+        return view('admin.requests', compact('orders'));
     }
 
     public function view_dishes()
     {
-        //$dishes = Dish::all();  // Fetch all dishes from the database
+        //$dishes = Dish::all();
         $dishes = Dish::paginate(6); 
-        return view('admin.dishes', compact('dishes'));  // Return the view with the list of dishes
+        return view('admin.dishes', compact('dishes')); 
 
     }
     public function view_time()
     {
         return view('admin.time');
     }
-    public function view_orderHistory()
+    public function view_orderHistory() //needs to show all orders with any status
     {
-        return view('admin.orderHistory');
+        $orders = Order::with('cartItems.dish')->get();
+        //return view('admin.requests', compact('orders'));
+        return view('admin.orderHistory', compact('orders'));
     }
     public function view_addDish()
     {
-        //$dishes = Dish::all();  // Fetch all dishes from the database
+        //$dishes = Dish::all();
         return view('admin.addDish');
 
     }
@@ -103,7 +111,7 @@ class AdminController extends Controller
     }
 
 
-    //to update status (only)
+    //to update status (only) DISH!!!
     public function updateStatus(Request $request, $id)
     {
         // Validate the request data
@@ -112,9 +120,9 @@ class AdminController extends Controller
         ]);
 
         $dish = Dish::find($id);
-        if (!$dish) {
+        /*if (!$dish) {
             return redirect()->back()->with('error', 'Dish not found!');
-        }
+        }*/
 
         // Update the dish status
         $dish->status = $request->input('dish-status');
@@ -123,5 +131,24 @@ class AdminController extends Controller
         return redirect()->route('admin.updateMenu')->with('success', 'Dish status updated successfully!');
     }
 
+
+    //to update order: set status and time to receive
+    public function update_order(Request $request, $id)
+    {
+        $order = Order::find($id);
+
+        if ($order) {
+            $order->status = $request->input('status');
+
+            $time = $request->input('estimated_time') ?? '00:00';   // set it to 00:00 when not working, so there would be no error for trying format() string
+            $order->estimated_time = Carbon::today()->format('Y-m-d') . ' ' . $time;
+
+            $order->save();
+
+            return response()->json(['success' => true]);
+        }
+
+        return response()->json(['success' => false]);
+    }
 
 }

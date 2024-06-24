@@ -51,12 +51,40 @@
 
         </table>
 
+        <!--<div class="actions">
+            <span class="total">Kopējā summa: { number_format($value, 2) }} €</span>
+            php if (count($cart) > 0): ?>     -- makes sure that if the cart is empty user cant submit order
+                <form action="{url('create_order')}}" method="post">
+                    csrf
+                    <input type="submit" class="btn checkout-btn" value="Pabeigt pasūtījumu">
+                </form>
+            php endif; ?>
+        </div>-->
+
+
         <div class="actions">
             <span class="total">Kopējā summa: {{ number_format($value, 2) }} €</span>
-            <form action="{{url('confirm_order')}}" method="post">
-                <input type="submit" class="btn checkout-btn" value="Pabeigt pasūtījumu">
-            </form>
+            @if($value > 0)
+                <form action="{{ url('create_order') }}" method="post">
+                    @csrf
+                    <input type="submit" class="btn checkout-btn" value="Pabeigt pasūtījumu">
+                </form>
+            @endif
         </div>
+    </section>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var cartItems = document.querySelectorAll(".cart-item");
+
+            cartItems.forEach(function(item) {
+                if (item.getAttribute("data-ordered") === "true") {
+                    item.style.display = "none";
+                }
+            });
+        });
+    </script>
+
     </section>
 </body>
 </html>
