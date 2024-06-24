@@ -37,7 +37,7 @@ nestrādājam
 nestrādājam
      </pre>  
 
-     <h3 id="order-time-caption">Pasūtījumus pieņemam: </h3>
+     <h3 id="order-time-caption">Šodien pasūtījumus pieņemam: </h3>
 
      <div class="grid-item">
         <a href="" id="link-menu">Ēdienkarte<a>

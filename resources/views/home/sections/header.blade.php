@@ -19,15 +19,14 @@
         
     @if (Route::has('login'))
         @auth
-        <li class="nav-item"><a href=""><img id="cart" src="images\shopping-cart.png" alt="Grozs"></a></li> <!--add href to cart page and add icon-->   
+        <li class="nav-item"><a href="{{url('mycart')}}"><img id="cart" src="images\shopping-cart.png" alt="Grozs">[{{$count}}]</a></li> <!--add href to cart page and add icon-->   
         <li> 
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
                 <input type="submit" value="Atslēgties" class="logout-button">
             </form>
         </li>
-        
-
+    
         @else
         <li class="nav-item"><a href="{{url('/login')}}">Pieslēgties</a></li> <!--add href to login page-->
         <li class="nav-item"><a href="{{url('/register')}}">Reģistrēties</a></li> <!--add href to login page-->
@@ -37,10 +36,4 @@
     @endif
 
     </ul>
-
-    
-    <!--<div class="user-option">
-        <a href=""> Pieslēgties</a>
-        <a href=""> Grozs</a>
-    </div>-->
 </nav>

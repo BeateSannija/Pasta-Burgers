@@ -32,7 +32,7 @@
                 <p>{{ $item->dish_description }}</p>
                 <h3>{{ $item->dish_price }}</h3>
 
-                <a class="add-to-cart" href="">Pievienot pasūtījumam</a>
+                <a class="add-to-cart" href="{{url('add_to_cart', $item->id)}}">Pievienot pasūtījumam</a>
 
             </div>
         @endforeach

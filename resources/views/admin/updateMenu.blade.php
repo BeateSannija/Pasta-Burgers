@@ -38,7 +38,7 @@
                     <form id="form-{{ $dish->id }}" action="{{ route('dishes.updateStatus', $dish->id) }}" method="POST">
                         @csrf
                         <div class="status-field">
-                            <label for="dish-status-{{ $dish->id }}">Status: </label>
+                            <label for="dish-status-{{ $dish->id }}">Statuss: </label>
                             <select id="dish-status-{{ $dish->id }}" name="dish-status" onchange="submitForm('{{ $dish->id }}')">
                                 <option value="Pieejams" {{ $dish->status == 'Pieejams' ? 'selected' : '' }}>Pieejams</option>
                                 <option value="Nav pieejams" {{ $dish->status == 'Nav pieejams' ? 'selected' : '' }}>Nav pieejams</option>

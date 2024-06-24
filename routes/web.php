@@ -13,13 +13,15 @@ use App\Http\Middleware\Admin;
 
 Route::get('/', [HomeController::class,'home'])->name('home');
 
-Route::get('/cart', function () {
+/*Route::get('/cart', function () {
     return view('cart');
-});
+});*/
 
-Route::get('/dashboard', function () {
+/*Route::get('/dashboard', function () {        //original one
     return view('home.index');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');*/
+
+Route::get('/dashboard', [HomeController::class, 'login_home'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -47,7 +49,12 @@ route::post('update_dish/{id}', [AdminController::class, 'update_dish'])->middle
 
 
     //for status editing
-Route::post('dishes/updateStatus/{id}', [AdminController::class, 'updateStatus'])->name('dishes.updateStatus');
+route::post('dishes/updateStatus/{id}', [AdminController::class, 'updateStatus'])->name('dishes.updateStatus');
 
 //  ROUTES FOR USER
-route::get('view_menu', [HomeController::class, 'view_menu']);      //MENU VIEW
+route::get('view_menu', [HomeController::class, 'view_menu']);      //MENU view
+route::get('add_to_cart/{id}', [HomeController::class, 'add_to_cart'])->middleware(['auth']);      //Add to cart only for registered users
+route::get('mycart', [HomeController::class, 'mycart'])->middleware(['auth', 'verified']);      //let verified stay?
+route::get('remove_item/{id}', [HomeController::class, 'remove_item'])->middleware(['auth', 'verified']);   //remove item from a cart
+
+//route::post('confirm_order', [HomeController::class, 'confirm_order'])->middleware(['auth', 'verified']); //confirm order
