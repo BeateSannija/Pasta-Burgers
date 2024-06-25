@@ -32,28 +32,32 @@
         
 
                 @foreach($orders as $order)
-                <tr>
-                    <td>{{ $order->user->name }}</td>
-                    <td>
-                        @foreach($order->cartItems as $item)
-                            <p>{{ $item->dish->dish_name }} - {{ $item->dish->dish_price }} €</p>
-                        @endforeach
-                    </td>
+                    @if(is_null($order->status))
+                    
+                    <tr>
+                        <td>{{ $order->user->name }}</td>
+                        <td>
+                            @foreach($order->cartItems as $item)
+                                <p>{{ $item->dish->dish_name }} - {{ $item->dish->dish_price }} €</p>
+                            @endforeach
+                        </td>
 
-                    <td><!--{ $order->status }}-->
-                        <select class="status-dropdown" data-order-id="{{ $order->id }}">
-                            <option value="">Statuss</option>
-                            <option value="accepted" {{ $order->status == 'accepted' ? 'selected' : '' }}>Apstiprināt</option>
-                            <option value="declined" {{ $order->status == 'declined' ? 'selected' : '' }}>Noraidīt</option>
-                        </select>
-                    </td>
+                        <td><!--{ $order->status }}-->
+                            <select class="status-dropdown" data-order-id="{{ $order->id }}">
+                                <option value="">Nezināms</option>
+                                <option value="accepted" {{ $order->status == 'accepted' ? 'selected' : '' }}>Apstiprināt</option>
+                                <option value="declined" {{ $order->status == 'declined' ? 'selected' : '' }}>Noraidīt</option>
+                            </select>
+                        </td>
 
-                    <td>
-                        <input type="time" class="time-input" data-order-id="{{ $order->id }}" value="{{ $order->estimated_time ? \Carbon\Carbon::parse($order->estimated_time)->format('H:i') : '00:00' }}">
-                    </td>
-                    <!--<td><a href="" class="accept-btn"> Pabeigt </a></td>-->
-                    <td><button class="accept-btn" data-order-id="{{ $order->id }}">Saglabāt</button></td>
-                </tr>
+                        <td>
+                            <input type="time" class="time-input" data-order-id="{{ $order->id }}" value="{{ $order->estimated_time ? \Carbon\Carbon::parse($order->estimated_time)->format('H:i') : '00:00' }}">
+                        </td>
+                        <!--<td><a href="" class="accept-btn"> Pabeigt </a></td>-->
+                        <td><button class="accept-btn" data-order-id="{{ $order->id }}">Saglabāt</button></td>
+                    </tr>
+
+                    @endif
                 @endforeach
         
 
@@ -77,6 +81,8 @@
                     return;
                 }
 
+                //sends an AJAX request to the server to update the order
+                //server processes the request and responds with a JSON object
                 fetch(`/update_order/${orderId}`, {
                     method: 'POST',
                     headers: {

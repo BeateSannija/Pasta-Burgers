@@ -1,0 +1,60 @@
+body 
+{
+    font-family: "Oswald", serif;
+    text-align: center;
+}
+
+.orders-container 
+{
+    width: 80%;
+    margin: 40px auto;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 20px;
+}
+
+/*   TABLE   */
+.orders-container table 
+{
+    width: 100%;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.orders-container th, .orders-container td {
+    padding: 15px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.orders-container th {
+    color: #8d0808;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.orders-container td {
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.orders-container tr:last-child td {
+    border-bottom: none;
+}
+
+.orders-container ul {
+    list-style-type: none;
+    padding: 0; 
+    margin: 0; 
+}
+
+.orders-container li {
+    padding: 5px 0;
+}
+
+.orders-container p {
+    font-size: 1rem;
+    color: #333;
+    margin-top: 20px;
+}

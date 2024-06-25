@@ -10,6 +10,46 @@ use Carbon\Carbon;
 
 class AdminController extends Controller
 {
+    public function index()
+    {
+        // return view('admin.index');
+        // Fetch orders with status 'accepted' and progress 'null' or 'in_progress'
+        /*$orders = Order::with(['user', 'cartItems.dish'])
+                ->where('status', 'accepted')
+                ->whereIn('progress', [null, 'in_progress'])
+                ->get();
+
+        return view('admin.index', compact('orders'));*/
+        $orders = Order::with(['user', 'cartItems.dish'])
+            ->where('status', 'accepted')
+            ->where(function ($query) { $query->where('progress', 'in_progress')->orWhereNull('progress');})->get();
+
+        return view('admin.index', compact('orders'));
+
+    }
+
+    public function update_order_progress(Request $request, $id)
+    {
+        /*$order = Order::find($id);
+
+        if ($order) {
+            $order->progress = $request->input('progress');
+            $order->save();
+
+            return redirect()->back()->with('success', 'Order progress updated successfully!');
+        }
+
+        return redirect()->back()->with('error', 'Order not found!');*/
+
+
+        $order = Order::findOrFail($id);
+        $order->progress = $request->input('progress');
+        $order->save();
+
+        return redirect()->back()->with('success', 'Order progress updated successfully.');
+    }
+
+    
     public function view_updateMenu()
     {
         $dishes = Dish::all();
@@ -33,16 +73,19 @@ class AdminController extends Controller
         return view('admin.dishes', compact('dishes')); 
 
     }
+
     public function view_time()
     {
         return view('admin.time');
     }
+
     public function view_orderHistory() //needs to show all orders with any status
     {
-        $orders = Order::with('cartItems.dish')->get();
-        //return view('admin.requests', compact('orders'));
+        /*$orders = Order::with('cartItems.dish')->get();*/
+        $orders = Order::with(['user', 'cartItems.dish'])->get();
         return view('admin.orderHistory', compact('orders'));
     }
+
     public function view_addDish()
     {
         //$dishes = Dish::all();
@@ -131,7 +174,6 @@ class AdminController extends Controller
         return redirect()->route('admin.updateMenu')->with('success', 'Dish status updated successfully!');
     }
 
-
     //to update order: set status and time to receive
     public function update_order(Request $request, $id)
     {
@@ -139,12 +181,23 @@ class AdminController extends Controller
 
         if ($order) {
             $order->status = $request->input('status');
-
-            $time = $request->input('estimated_time') ?? '00:00';   // set it to 00:00 when not working, so there would be no error for trying format() string
-            $order->estimated_time = Carbon::today()->format('Y-m-d') . ' ' . $time;
-
+            $order->progress = $request->input('progress');
+            $order->estimated_time = Carbon::today()->format('Y-m-d') . ' ' . ($request->input('estimated_time') ?? '00:00');
             $order->save();
 
+            return response()->json(['success' => true]);
+        }
+
+        return response()->json(['success' => false]);
+    }
+
+
+    public function delete_orders(Request $request)
+    {
+        $orderIds = $request->input('order_ids');
+
+        if ($orderIds && is_array($orderIds) && count($orderIds) > 0) {
+            Order::whereIn('id', $orderIds)->delete();
             return response()->json(['success' => true]);
         }
 

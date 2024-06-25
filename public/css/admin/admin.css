@@ -44,6 +44,62 @@ li
     cursor: pointer; 
 }
 
+/*   ORDER ('Pas;utījumi') view   */
+.orders-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+.order {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: box-shadow 0.3s ease;
+}
+.order:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.order h3 {
+    margin-top: 0;
+    font-size: 1.5em;
+}
+.order p {
+    margin: 0.5em 0;
+}
+.order ul {
+    list-style: none;
+    padding: 0;
+}
+.order ul li {
+    margin: 0.5em 0;
+}
+.order button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    margin-right: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.order button:hover {
+    background-color: #0056b3;
+}
+.order button:last-child {
+    background-color: #28a745;
+}
+.order button:last-child:hover {
+    background-color: #218838;
+}
+
+
+
+
+/**/
 .main
 {
     margin:15px;

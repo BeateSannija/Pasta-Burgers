@@ -24,26 +24,20 @@ class HomeController extends Controller
         return view('home.index', compact('count'));
     }
 
-    public function index()
-    {
-        return view('admin.index');
-    }
+    
 
     public function home()
     {
+        $count = 0;
+        $cart = collect();
         if(Auth::id())
         {
             $user = Auth::user();
             $userid = $user->id;
-            //$count = Cart::where('user_id',$userid)->count();
-            //$cart = Cart::where('user_id', $userid)->get(); //added
             $count = Cart::where('user_id', $userid)->whereNull('order_id')->count();
             $cart = Cart::where('user_id', $userid)->whereNull('order_id')->get();
         }
-        else
-        {
-            $count = '';
-        }
+
         return view('home.index', compact('count'));
     }
 
@@ -52,6 +46,8 @@ class HomeController extends Controller
         $dish = Dish::where('status', 'Pieejams')->get();
 
         // for the cart item count
+        $count = 0;
+        $cart = collect();
         if(Auth::id())
         {
             $user = Auth::user();
@@ -61,10 +57,11 @@ class HomeController extends Controller
             $count = Cart::where('user_id', $userid)->whereNull('order_id')->count();
             $cart = Cart::where('user_id', $userid)->whereNull('order_id')->get();
         }
-        else
+        /*else
         {
             $count = '';
-        }
+            $cart = collect();
+        }*/
         return view('home.menu', compact('dish', 'count'));
     }
 
@@ -85,6 +82,8 @@ class HomeController extends Controller
     public function mycart()
     {
         //for item count in the cart
+        $count = 0;
+        $cart = collect();
         if(Auth::id())
         {
             $user = Auth::user();
@@ -102,6 +101,21 @@ class HomeController extends Controller
         }
 
         return view('home.mycart', compact('count', 'cart'));
+
+        
+    }
+
+    public function cart_count()
+    {
+        $count = 0;
+
+        if (Auth::id()) {
+            $user = Auth::user();
+            $userid = $user->id;
+            $count = Cart::where('user_id', $userid)->whereNull('order_id')->count();
+        }
+
+        return response()->json(['count' => $count]);
     }
 
     public function remove_item($id)
@@ -138,6 +152,31 @@ class HomeController extends Controller
 
         return redirect()->route('home')->with('success', 'Your order has been placed successfully!');
     }
+
+    public function myorders()
+    {
+
+        $count = 0;
+        $cart = collect();
+        $orders = collect(); // Initialize an empty collection
+
+        if (Auth::id()) {
+            $user = Auth::user();
+            $userid = $user->id;
+            $count = Cart::where('user_id', $userid)->whereNull('order_id')->count();
+            $cart = Cart::where('user_id', $userid)->whereNull('order_id')->get();
+            $orders = Order::with('cartItems.dish')->where('user_id', $userid)->get(); // Fetch orders with related cart items and dishes
+        }
+        
+
+        return view('home.orders', compact('count', 'orders'));
+    }
+
+    /*public function myorders()
+    {
+        $orders = Order::with(['user', 'cartItems.dish'])->get();
+        return view('home.orders', compact('orders'));
+    }*/
     
 
     

@@ -22,7 +22,6 @@
             <tr>
                 <th>Ēdiena nosaukums</th>
                 <th>Cena</th>
-                <th>Vienības</th>
                 <th>Attēls</th>
                 <th></th>   <!-- for remove button -->
             </tr>
@@ -35,7 +34,6 @@
             <tr>
                 <td>{{$item->dish->dish_name}}</td>
                 <td>{{$item->dish->dish_price}}</td>
-                <td>???</td> <!--need to get quantity-->
                 <td><img width="100" src="{{ asset('storage/' . $item->dish->image) }}"></td>
 
                 <!-- remove button-->
@@ -61,7 +59,7 @@
             php endif; ?>
         </div>-->
 
-
+<!-- TOTAL -->
         <div class="actions">
             <span class="total">Kopējā summa: {{ number_format($value, 2) }} €</span>
             @if($value > 0)
@@ -73,6 +71,7 @@
         </div>
     </section>
 
+<!-- -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             var cartItems = document.querySelectorAll(".cart-item");

@@ -32,16 +32,20 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 //  ROUTES FOR ADMIN SIDEBAR
-route::get('admin/dashboard', [HomeController::class, 'index'])->middleware(['auth', 'admin'])->name('admin.dashboard');
+route::get('admin/dashboard', [AdminController::class, 'index'])->middleware(['auth', 'admin'])->name('admin.dashboard');
 route::get('view_updateMenu', [AdminController::class, 'view_updateMenu'])->middleware(['auth', 'admin'])->name('admin.updateMenu');
+
 route::get('view_requests', [AdminController::class, 'view_requests'])->middleware(['auth', 'admin']);
 route::get('view_dishes', [AdminController::class, 'view_dishes'])->middleware(['auth', 'admin'])->name('admin.view_dishes');
 route::get('view_time', [AdminController::class, 'view_time'])->middleware(['auth', 'admin']);
 route::get('view_orderHistory', [AdminController::class, 'view_orderHistory'])->middleware(['auth', 'admin']);
 route::get('view_addDish', [AdminController::class, 'view_addDish'])->middleware(['auth', 'admin']); //page for adding dish
-route::post('update_order/{id}', [AdminController::class, 'update_order'])->middleware(['auth', 'admin']);
+route::post('/admin/orders/update-progress/{id}', [AdminController::class, 'update_order_progress'])->middleware(['auth', 'admin'])->name('admin.update_order_progress');
+route::post('update_order/{id}', [AdminController::class, 'update_order'])->middleware(['auth', 'admin'])->name('admin.update_order');  //for orderHistory
+route::post('delete_orders', [AdminController::class, 'delete_orders'])->middleware(['auth', 'admin'])->name('admin.delete_orders');    //for orderHistory
 
-        //CRUD
+
+        //CRUD for dishes
 route::post('add_dish', [AdminController::class, 'add_dish'])->middleware(['auth', 'admin']);  //create
 route::get('delete_dish/{id}', [AdminController::class, 'delete_dish'])->middleware(['auth', 'admin']);   //delete
 
@@ -57,5 +61,9 @@ route::get('view_menu', [HomeController::class, 'view_menu']);      //MENU view
 route::get('add_to_cart/{id}', [HomeController::class, 'add_to_cart'])->middleware(['auth']);      //Add to cart only for registered users
 route::get('mycart', [HomeController::class, 'mycart'])->middleware(['auth', 'verified']);      //let verified stay?
 route::get('remove_item/{id}', [HomeController::class, 'remove_item'])->middleware(['auth', 'verified']);   //remove item from a cart
+route::get('myorders', [HomeController::class, 'myorders'])->middleware(['auth', 'verified']);  //for orders display
 
 route::post('create_order', [HomeController::class, 'create_order'])->middleware(['auth', 'verified']); //confirm order
+
+
+Route::get('/cart/count', [HomeController::class, 'cart_count'])->name('cart.count');        //cart count testing //dynamic with json

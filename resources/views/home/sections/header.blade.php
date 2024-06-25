@@ -19,7 +19,20 @@
         
     @if (Route::has('login'))
         @auth
-        <li class="nav-item"><a href="{{url('mycart')}}"><img id="cart" src="images\shopping-cart.png" alt="Grozs">[{{$count}}]</a></li> <!--add href to cart page and add icon-->   
+        <!--<li class="nav-item"><a href="{url('mycart')}}"><img id="cart" src="images\shopping-cart.png" alt="Grozs">[{$count}}]</a></li> <--add href to cart page and add icon-->   
+        
+        <li class="nav-item">
+            <a href="{{url('myorders')}}">
+                Mani pasūtījumi
+            </a> 
+        </li>
+            
+        <li class="nav-item">
+            <a href="{{url('mycart')}}">
+                <img id="cart" src="images/shopping-cart.png" alt="Grozs">[<span id="cart-count">{{ $count }}</span>]
+            </a>
+        </li>
+        
         <li> 
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
@@ -37,3 +50,19 @@
 
     </ul>
 </nav>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        if (@json(Auth::check())) {
+            updateCartCount();
+        }
+    });
+
+    function updateCartCount() {
+        fetch('/cart/count')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('cart-count').innerText = data.count;
+            });
+    }
+</script>

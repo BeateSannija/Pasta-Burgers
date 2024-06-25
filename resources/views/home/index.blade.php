@@ -42,7 +42,6 @@ nestrādājam
      <div class="grid-item">
         <a href="" id="link-menu">Ēdienkarte<a>
      </div>
-
     </section>
 
 <!--Contacts --later remove-->
