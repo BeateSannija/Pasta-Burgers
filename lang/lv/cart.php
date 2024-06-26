@@ -5,6 +5,7 @@ return [
     'price' => 'Cena',
     'image' => 'Attēls',
     'total' => 'Kopējā summa:',
+    'remove'=>  'Noņemt',
 
 ];
 

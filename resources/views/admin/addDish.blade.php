@@ -18,6 +18,19 @@
             <label for="dish-description">Apraksts</label>
             <textarea id="description" name="dish-description" required></textarea>
         </div>
+
+        <!-- adding name and description in english for localization-->
+        <div class="field">
+            <label for="dish-name-en">Nosaukums(EN)</label>
+            <input type="text" name="dish-name-en" id="dish-name-en">
+        </div>
+
+        <div class="field">
+            <label for="dish-description-en">Apraksts (EN)</label>
+            <textarea id="description-en" name="dish-description-en"></textarea>
+        </div>
+        <!-- -->
+
         <div class="field">
             <label for="dish-price">Cena</label>
             <input type="text" name="dish-price" id="dish-price" required>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ app()->getLocale() }}">
 <head>
     @include('home.sections.head')
 </head>
@@ -25,11 +25,13 @@
     <section class="menu-container">
         @foreach($dish as $item)
             <div class="dish-card" data-category="{{ $item->dish_category }}">
-                <h4>{{ $item->dish_name }}</h4>
+                <!-- <h4>{ $item->dish_name }}</h4>-->
+                <h4>{{ app()->getLocale() === 'en' ? $item->dish_name_en : $item->dish_name }}</h4> <!-- to display also in english when needed-->
                 <div class="img-box">
                     <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->dish_name }}">
                 </div>
-                <p>{{ $item->dish_description }}</p>
+                <!--<p>{ $item->dish_description }}</p>-->
+                <p>{{ app()->getLocale() === 'en' ? $item->dish_description_en : $item->dish_description }}</p>
                 <h3>{{ $item->dish_price }}</h3>
 
                 <a class="add-to-cart" href="{{url('add_to_cart', $item->id)}}">{{ __('menu.add_to_cart') }}</a>

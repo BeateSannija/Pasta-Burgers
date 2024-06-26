@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ app()->getLocale() }}">
 <head>
     
     @include('home.sections.head')
@@ -32,7 +32,8 @@
                 <td>
                     <ul>
                         @foreach ($order->cartItems as $item)
-                            <li>{{ $item->dish->dish_name }} - {{ $item->dish->dish_price }} €</li>
+                            <!-- <li>{ $item->dish->dish_name }} - { $item->dish->dish_price }} €</li>-->
+                            <li>{{ app()->getLocale() === 'en' ? $item->dish->dish_name_en : $item->dish->dish_name }} - {{ $item->dish->dish_price }} €</li>
                         @endforeach
                     </ul>
                 </td>

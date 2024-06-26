@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ app()->getLocale() }}">
 <head>
     
     @include('home.sections.head')
@@ -32,12 +32,13 @@
 
     @foreach($cart as $item)
             <tr>
-                <td>{{$item->dish->dish_name}}</td>
+                <!-- <td>{$item->dish->dish_name}}</td>-->
+                <td>{{ app()->getLocale() === 'en' ? $item->dish->dish_name_en : $item->dish->dish_name }}</td>
                 <td>{{$item->dish->dish_price}}</td>
                 <td><img width="100" src="{{ asset('storage/' . $item->dish->image) }}"></td>
 
                 <!-- remove button-->
-                <td><a class="remove-item" href="{{url('remove_item', $item->id)}}">Noņemt</a></td>
+                <td><a class="remove-item" href="{{url('remove_item', $item->id)}}">{{ __('cart.remove')}}</a></td>
             </tr>
 
 

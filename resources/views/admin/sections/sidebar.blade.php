@@ -3,7 +3,7 @@
     <li class="menu-item"><a href="{{url('view_requests')}}">Pieprasījumi</a></li> <!--accept or reject-->
     <li class="menu-item"><a href="{{url('view_updateMenu')}}">Ēdienkarte</a></li> <!--add dishes from database or remove from menu-->
     <li class="menu-item"><a href="{{url('view_dishes')}}">Ēdieni</a></li> <!--add or delete dishes from database-->
-    <li class="menu-item"><a href="{{url('view_time')}}">Pieņemšanas laiki</a></li> <!--set time when ordering ends-->
+    <!--<li class="menu-item"><a href="{url('view_time')}}">Pieņemšanas laiki</a></li> <--set time when ordering ends-->
     <li class="menu-item"><a href="{{url('view_orderHistory')}}">Pasūtījumu vēsture</a></li> <!--all history of orders (like in lab about cars)-->
 </ul>
 

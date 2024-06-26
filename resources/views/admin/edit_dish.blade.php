@@ -18,6 +18,20 @@
             <label for="dish-description">Apraksts</label>
             <textarea id="description" name="dish-description" required>{{ $dish->dish_description }}</textarea>
         </div>
+
+        <!-- Added two more input fieelds for localization-->
+
+        <div class="field">
+            <label for="dish-name-en">Nosaukums (EN)</label>
+            <input type="text" name="dish-name-en" id="dish-name-en" value="{{ $dish->dish_name_en }}">
+        </div>
+        <div class="field">
+            <label for="dish-description-en">Apraksts (EN)</label>
+            <textarea id="description-en" name="dish-description-en">{{ $dish->dish_description_en }}</textarea>
+        </div>
+
+        <!-- -->
+
         <div class="field">
             <label for="dish-price">Cena</label>
             <input type="text" name="dish-price" id="dish-price" value="{{ $dish->dish_price }}" required>

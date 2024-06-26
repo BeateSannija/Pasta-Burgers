@@ -5,6 +5,7 @@ return [
     'price' => 'Price',
     'image' => 'Image',
     'total' => 'Total:',
+    'remove'=>  'Remove',
 
 ];
 
