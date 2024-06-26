@@ -20,11 +20,11 @@
     <div class="orders-container">
         <table>
             <tr>
-                <th>Pasūtījums</th>
-                <th>Datums</th>
-                <th>Statuss</th>
-                <th>Progress</th>
-                <th>Plānotais laiks</th>
+                <th>{{ __('order.order') }}</th> <!--<th>Pasūtījums</th>-->
+                <th>{{ __('order.date') }}</th>
+                <th>{{ __('order.status') }}</th>
+                <th>{{ __('order.progress') }}</th>
+                <th>{{ __('order.Estimated_time') }}</th>
             </tr>
     
             @foreach($orders as $order)
@@ -36,9 +36,30 @@
                         @endforeach
                     </ul>
                 </td>
-                <td>{{ $order->created_at->format('Y-m-d H:i') }}</td>
-                <td>{{ $order->status }}</td>
-                <td>{{ $order->progress }}</td>
+                <td>{{ $order->created_at->format('d-m-Y H:i') }}</td>
+
+                <td> <!-- show statuss in lv-->
+                    @if ($order->status === 'accepted')
+                    {{ __('order.accepted')}}
+                    @elseif ($order->status === 'declined')
+                    {{ __('order.declined')}}
+                    @else
+                        {{ $order->status }} <!-- Default status if not 'accepted' or 'declined' -->
+                    @endif
+                </td>
+
+                <td>
+                    @if ($order->progress === 'ready')
+                    {{ __('order.ready')}}
+                    @elseif ($order->progress === 'in_progress')
+                    {{ __('order.in_progress')}}
+                    @else
+                        {{ $order->progress }} <!-- Default status if not 'accepted' or 'declined' -->
+                    @endif
+                    
+                    <!--{ $order->progress }}-->
+                </td>
+
                 <td>{{ $order->estimated_time ? \Carbon\Carbon::parse($order->estimated_time)->format('H:i') : 'N/A' }}</td>
             </tr>
             @endforeach
@@ -46,6 +67,6 @@
         </table>
     </div>
 
-    <p> Problēmu vai jautājumus gadījumā sazināties, zvanot uz numuru +371 270 700 25 </p>
+    <p>{{ __('order.if_problems') }}</p>
 </body>
 </html>

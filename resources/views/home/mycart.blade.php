@@ -3,7 +3,7 @@
 <head>
     
     @include('home.sections.head')
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/home/mycart.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/home/mycart.css') }}">
 
 </head>
 <body>
@@ -20,9 +20,9 @@
     <section class="cart-container">
         <table>
             <tr>
-                <th>Ēdiena nosaukums</th>
-                <th>Cena</th>
-                <th>Attēls</th>
+                <th>{{ __('cart.name')}}</th>
+                <th>{{ __('cart.price')}}</th>
+                <th>{{ __('cart.image')}}</th>
                 <th></th>   <!-- for remove button -->
             </tr>
 
@@ -49,20 +49,10 @@
 
         </table>
 
-        <!--<div class="actions">
-            <span class="total">Kopējā summa: { number_format($value, 2) }} €</span>
-            php if (count($cart) > 0): ?>     -- makes sure that if the cart is empty user cant submit order
-                <form action="{url('create_order')}}" method="post">
-                    csrf
-                    <input type="submit" class="btn checkout-btn" value="Pabeigt pasūtījumu">
-                </form>
-            php endif; ?>
-        </div>-->
-
 <!-- TOTAL -->
         <div class="actions">
-            <span class="total">Kopējā summa: {{ number_format($value, 2) }} €</span>
-            @if($value > 0)
+            <span class="total">{{ __('cart.total')}} {{ number_format($value, 2) }} €</span>
+            @if($value > 0)     <!--makes sure that if the cart is empty user cant submit order-->
                 <form action="{{ url('create_order') }}" method="post">
                     @csrf
                     <input type="submit" class="btn checkout-btn" value="Pabeigt pasūtījumu">

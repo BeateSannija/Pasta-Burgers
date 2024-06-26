@@ -11,14 +11,14 @@
     </section>
 
     <div class="category-selector">
-        <label for="category-select">Kategorijas:</label>
+        <label for="category-select">{{ __('menu.cat') }}</label>
         <select id="category-select" onchange="filterDishes()">
-            <option value="all">Viss</option>
-            <option value="uzkodas">Uzkodas</option>
-            <option value="salati">Salāti</option>
-            <option value="pastas">Pastas</option>
-            <option value="burgeru-komplekti">Burgeru komplekti</option>
-            <option value="deserti">Deserti</option>
+            <option value="all">{{ __('menu.all') }}</option>
+            <option value="uzkodas">{{ __('menu.appetizers') }}</option>
+            <option value="salati">{{ __('menu.salad') }}</option>
+            <option value="pastas">{{ __('menu.pastas') }}</option>
+            <option value="burgeru-komplekti">{{ __('menu.burgers') }}</option>
+            <option value="deserti">{{ __('menu.desserts') }}</option>
         </select>
     </div>
 
@@ -32,7 +32,7 @@
                 <p>{{ $item->dish_description }}</p>
                 <h3>{{ $item->dish_price }}</h3>
 
-                <a class="add-to-cart" href="{{url('add_to_cart', $item->id)}}">Pievienot pasūtījumam</a>
+                <a class="add-to-cart" href="{{url('add_to_cart', $item->id)}}">{{ __('menu.add_to_cart') }}</a>
 
             </div>
         @endforeach

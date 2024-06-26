@@ -2,20 +2,18 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;    //added
-use App\Http\Controllers\AdminController;    //added
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AdminController;    
+use App\Http\Controllers\LocaleController;    
 use App\Http\Middleware\Admin;
-
-/*
-  - profile?
-  - kontakti & par mums 
- */
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Redirect;
 
 Route::get('/', [HomeController::class,'home'])->name('home');
 
-/*Route::get('/cart', function () {
-    return view('cart');
-});*/
+//change locale
+route::get('locale/{lang}', [LocaleController::class,'setLocale']);
 
 /*Route::get('/dashboard', function () {        //original one
     return view('home.index');
@@ -64,6 +62,5 @@ route::get('remove_item/{id}', [HomeController::class, 'remove_item'])->middlewa
 route::get('myorders', [HomeController::class, 'myorders'])->middleware(['auth', 'verified']);  //for orders display
 
 route::post('create_order', [HomeController::class, 'create_order'])->middleware(['auth', 'verified']); //confirm order
-
 
 Route::get('/cart/count', [HomeController::class, 'cart_count'])->name('cart.count');        //cart count testing //dynamic with json

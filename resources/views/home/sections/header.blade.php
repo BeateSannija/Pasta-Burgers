@@ -1,7 +1,7 @@
 <div class="logo-container">
     <ul class="languages">
-        <li class="language"><a href>LV</a>
-        <li class="language"><a href>ENG</a>
+        <li class="language"><a href="locale/lv">LV</a>
+        <li class="language"><a href="locale/en">ENG</a>
     </ul>
 
         <div>
@@ -12,10 +12,10 @@
 <nav class="navbar">
     <ul id="navbar-list">
         <!--<li class="nav-item"><a href="{{ route('home') }}"><img id="logo" src="images/PASTA-BURGERS-uzraksts-bez-fona.png" alt="Pasta Burgers"></a></li>-->
-        <li class="nav-item"><a href="{{ route('home') }}">Sākums</a></li>
-        <li class="nav-item"><a href="{{url('view_menu')}}">Ēdienkarte</a></li>
-        <li class="nav-item"><a href="#about-us">Par mums</a></li>
-        <li class="nav-item"><a href="#footer">Kontakti</a></li>
+        <li class="nav-item"><a href="{{ route('home') }}">{{ __('homepage.index') }}</a></li>
+        <li class="nav-item"><a href="{{url('view_menu')}}">{{ __('homepage.menu') }}</a></li>
+        <li class="nav-item"><a href="">{{ __('homepage.about_us') }}</a></li>
+        <li class="nav-item"><a href="">{{ __('homepage.contact_us') }}</a></li>
         
     @if (Route::has('login'))
         @auth
@@ -23,7 +23,7 @@
         
         <li class="nav-item">
             <a href="{{url('myorders')}}">
-                Mani pasūtījumi
+                {{ __('homepage.my_orders') }}
             </a> 
         </li>
             
@@ -36,13 +36,13 @@
         <li> 
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
-                <input type="submit" value="Atslēgties" class="logout-button">
+                <input type="submit" value="{{ __('homepage.logo_out')}}" class="logout-button">
             </form>
         </li>
     
         @else
-        <li class="nav-item"><a href="{{url('/login')}}">Pieslēgties</a></li> <!--add href to login page-->
-        <li class="nav-item"><a href="{{url('/register')}}">Reģistrēties</a></li> <!--add href to login page-->
+        <li class="nav-item"><a href="{{url('/login')}}">{{ __('homepage.log_in') }}</a></li> <!--add href to login page-->
+        <li class="nav-item"><a href="{{url('/register')}}">{{ __('homepage.register') }}</a></li> <!--add href to login page-->
         
 
         @endauth
