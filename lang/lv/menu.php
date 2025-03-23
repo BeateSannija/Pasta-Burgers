@@ -1,14 +1,14 @@
 <?php
 
 return [
-    'cat' => 'Categories:',
-    'all' => 'All',
-    'appetizers' => 'Appetizers',
-    'salad' => 'Salad',
+    'cat' => 'Kategorijas:',
+    'all' => 'Viss',
+    'appetizers' => 'Uzkodas',
+    'salad' => 'Salāti',
     'pastas' => 'Pastas',
-    'burgers' => 'Burgers',
-    'desserts' => 'Desserts',
-    'add_to_cart' => 'Add to the cart',
+    'burgers' => 'Burgeri',
+    'desserts' => 'Deserti',
+    'add_to_cart' => 'Pievienot grozam',
 
 ];
 

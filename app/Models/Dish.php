@@ -13,8 +13,8 @@ class Dish extends Model
         'dish_description',
         'dish_category',
         'dish_price',
-        'image',         // Add image to fillable
-        'status',        // Add status to fillable
+        'image',
+        'status', 
     ];
 
     

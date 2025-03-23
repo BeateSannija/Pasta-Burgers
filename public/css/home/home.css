@@ -31,15 +31,15 @@ body
     margin: 0;
     padding: 0;
     position: absolute;
-    top: 10px; /* Adjust as needed */
-    right: 10px; /* Adjust as needed */
+    top: 10px; 
+    right: 10px; 
     display: flex;
-    gap: 10px; /* Space between languages */
+    gap: 10px; 
 }
 
 .language a 
 {
-    color: #000; /* Change as needed for better visibility */
+    color: #000; 
 }
 
 #hero-area-logo 
@@ -51,7 +51,7 @@ body
 
 .navbar 
 {
-    margin-top: 20px; /* Add some spacing if needed */
+    margin-top: 20px; 
 }
 
 #navbar-list 
@@ -65,7 +65,7 @@ body
 
 #navbar-list li 
 {
-    margin: 0 20px; /* Adjust spacing between nav items */
+    margin: 0 20px;
 }
 
 #navbar-list li a 
@@ -105,8 +105,8 @@ body
 
 .logout-button:hover 
 {
-    background-color: #383737; /* Darker red on hover */
-    transform: scale(1.02); /* Slightly larger on hover */
+    background-color: #383737;
+    transform: scale(1.02); 
 }
 
         /*   BANNER   */
@@ -114,32 +114,16 @@ body
 {
     display: grid;
     grid-template-columns: 1fr 1fr 2fr;
-    grid-template-rows: 1fr 1fr;
     gap: 10px;
     margin-left: auto; 
     margin-right: auto; 
     margin-top: 25px;
-    /*background: linear-gradient(#ffffff, rgb(246, 179, 57));*/
-    background-color: rgb(59, 58, 58);
+    background-color: rgb(152, 119, 88);
     margin-bottom:1em;
     height:auto;
     padding:0;
-}
-#dienas
-{
-    grid-column: 1 / 2;
-    grid-row: 1 / 2;
-    justify-self: end;
-    align-self:center;
-    
-}
-
-#laiki
-{
-    grid-column: 2 / 3;
-    grid-row: 1 / 2;
-    justify-self: start;
-    align-self:center;
+    justify-items: center;
+    align-items: center;
 }
 
 .promo-container
@@ -152,23 +136,13 @@ body
 }
 
 .promo {
-    max-width: 80%;
+    max-width: 70%;
     max-height: 80%; 
     object-fit: cover; 
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
     transition: transform 0.3s ease, box-shadow 0.3s ease; 
-    
-}
-
-pre{
-    padding-top: 1em;
-    align-self: center;
-    margin:0;
-    margin-top:50px;
-    font-size: 1.5rem;
-    text-transform:uppercase;
-    color:white;
+    margin: 3%;
 }
 
 .grid-item 
@@ -176,7 +150,7 @@ pre{
     grid-column: 1 / 3 ;
     grid-row: 2 / 3 ;
     justify-self: center;
-    align-self: center; /* Center vertically and horizontally */
+    align-self: center; /* center vertically and horizontally */
     text-align: center;
 }
 
@@ -205,18 +179,82 @@ pre{
     border-bottom-color: rgb(246, 179, 57);
 }
 
+    /* random dishes view*/
+
+.merged-cell 
+{
+    grid-column: span 2;
+    display: flex;
+    justify-content: center;
+    align-items: stretch; 
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 5%;
+}
+
+.ran-dish 
+{
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 250px;
+    padding: 15px;
+    text-align: center;
+}
+
+.img-ran-box img 
+{
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
 
 
+.dish-title {
+    font-size: 1.3rem;
+    padding: 15px;
+    font-weight: 600;
+    color: #333;
+}
+
+/* contact view below the banner */
+
+.contact_section
+{
+    display:flex;
+    flex-direction: row ;
+    gap: 40px;
+    align-items: flex-start;
+    align-items: center;
+    padding: 5% 10%;
+}
+
+
+.info-wrapper {
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); 
+} 
+
+#dienas, #laiki {
+    font-size: 1.5rem;
+}
 
 /*   MENU  view */
 .menu-container 
 {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     justify-content: center;
-    margin-top: 20px;
-    margin-left:10%;
-    margin-right:10%;
+    gap: 20px;
+    margin: 40px 10%;
+    align-items: stretch;
 }
 
 .dish-card 
@@ -227,10 +265,19 @@ pre{
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    width: 300px;
+    width: 100%;
     transition: transform 0.3s;
     padding: 20px;
     text-align: center;
+    margin: 10px;
+}
+
+.card-footer {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
 }
 
 .dish-card:hover 
@@ -238,17 +285,17 @@ pre{
     transform: translateY(-10px);
 }
 
-.dish-card h4, .dish-card h3 
+.dish-card h4
 {
     color: #333;
     margin-bottom: 10px;
 }
 
-.dish-card h3
+/* .dish-card h3
 {
     align-self: center;
     margin-top: auto;
-}
+} */
 
 .dish-card .img-box 
 {

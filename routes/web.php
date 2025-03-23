@@ -15,10 +15,6 @@ Route::get('/', [HomeController::class,'home'])->name('home');
 //change locale
 route::get('locale/{lang}', [LocaleController::class,'setLocale']);
 
-/*Route::get('/dashboard', function () {        //original one
-    return view('home.index');
-})->middleware(['auth', 'verified'])->name('dashboard');*/
-
 Route::get('/dashboard', [HomeController::class, 'login_home'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -51,7 +47,7 @@ route::get('edit_dish/{id}', [AdminController::class, 'edit_dish'])->middleware(
 route::post('update_dish/{id}', [AdminController::class, 'update_dish'])->middleware(['auth', 'admin']);
 
 
-    //for status editing
+    //for status editing (dishes table)
 route::post('dishes/updateStatus/{id}', [AdminController::class, 'updateStatus'])->name('dishes.updateStatus');
 
 //  ROUTES FOR USER

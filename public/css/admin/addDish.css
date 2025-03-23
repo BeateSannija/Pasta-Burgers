@@ -21,7 +21,7 @@ form {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-top: 15em; /* Add margin to push the form down */
+    margin-top: 15em; /* add margin to push the form down */
 }
 
 .field {
@@ -54,12 +54,12 @@ form {
 }
 
 #description, #description-en {
-    height: 100px; /* Increase height */
-    resize: vertical; /* Allow vertical resizing only */
+    height: 100px;
+    resize: vertical;
 }
 
 .field input[type="file"] {
-    padding: 10px 0; /* Add some padding for file input */
+    padding: 10px 0;
     display: block;
 }
 
@@ -75,7 +75,7 @@ form {
     border: none;
     cursor: pointer;
     transition: background-color 0.3s, box-shadow 0.3s;
-    margin-top: 10px; /* Add margin to separate the button from the file input */
+    margin-top: 10px; 
 }
 
 .btn:hover {

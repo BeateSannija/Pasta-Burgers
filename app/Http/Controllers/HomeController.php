@@ -18,10 +18,11 @@ class HomeController extends Controller
     public function login_home()        //changed place
     {
         // for the cart item count
-        $user = Auth::user();   //checking if user is logged in
+        $user = Auth::user();   //checking if user has logged in
         $userid = $user->id;
         $count = Cart::where('user_id',$userid)->count();
-        return view('home.index', compact('count'));
+        $randomDishes = Dish::inRandomOrder()->take(2)->get();
+        return view('home.index', compact('count', 'randomDishes'));
     }
 
     
@@ -38,7 +39,9 @@ class HomeController extends Controller
             $cart = Cart::where('user_id', $userid)->whereNull('order_id')->get();
         }
 
-        return view('home.index', compact('count'));
+        $randomDishes = Dish::inRandomOrder()->take(2)->get();  //chooses 2 random dishes to show on banner
+
+        return view('home.index', compact('count', 'randomDishes'));
     }
 
     public function view_menu()
@@ -52,16 +55,9 @@ class HomeController extends Controller
         {
             $user = Auth::user();
             $userid = $user->id;
-            //$count = Cart::where('user_id',$userid)->count();
-            //$cart = Cart::where('user_id', $userid)->get(); //added
             $count = Cart::where('user_id', $userid)->whereNull('order_id')->count();
             $cart = Cart::where('user_id', $userid)->whereNull('order_id')->get();
         }
-        /*else
-        {
-            $count = '';
-            $cart = collect();
-        }*/
         return view('home.menu', compact('dish', 'count'));
     }
 
@@ -88,12 +84,9 @@ class HomeController extends Controller
         {
             $user = Auth::user();
             $userid = $user->id;
-            //$count = Cart::where('user_id',$userid)->count();
-            //$cart = Cart::where('user_id', $userid)->get(); //added
             $count = Cart::where('user_id', $userid)->whereNull('order_id')->count();
             $cart = Cart::where('user_id', $userid)->whereNull('order_id')->get();
         }
-        //
         else 
         {
             $count = 0;
@@ -171,14 +164,6 @@ class HomeController extends Controller
 
         return view('home.orders', compact('count', 'orders'));
     }
-
-    /*public function myorders()
-    {
-        $orders = Order::with(['user', 'cartItems.dish'])->get();
-        return view('home.orders', compact('orders'));
-    }*/
-    
-
     
 }
 

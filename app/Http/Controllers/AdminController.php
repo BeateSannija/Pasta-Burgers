@@ -154,32 +154,6 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
-
-    /*public function edit_dish($id)
-    {
-        $dish = Dish::find($id);   
-        return view('admin.edit_dish', compact('dish'));
-    }
-
-    public function update_dish(Request $request,$id)
-    {
-        $dish = Dish::find($id); 
-        $dish->dish_name = $request->input('dish-name');
-        $dish->dish_description = $request->input('dish-description');
-        $dish->dish_price = $request->input('dish-price');
-        $dish->dish_category = $request->input('dish-category');
-
-        if ($request->hasFile('image') && $request->file('image')->isValid()) 
-        {
-            $image = $request->file('image');
-            $imagename = time() . '.' . $image->getClientOriginalExtension();
-            $path = $image->storeAs('dishes', $imagename, 'public');
-            $dish->image = $path;
-        }
-        $dish->save();
-        return redirect()->route('admin.view_dishes');
-    }*/
-
     //updates edit and update method for localization
     public function edit_dish($id)
     {

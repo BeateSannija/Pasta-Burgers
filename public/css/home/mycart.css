@@ -19,7 +19,7 @@
 .cart-container th, .cart-container td {
     padding: 15px;
     text-align: center;
-    vertical-align: middle; /* Center vertically */
+    vertical-align: middle; 
 }
 
 .cart-container th {

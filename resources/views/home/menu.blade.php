@@ -25,22 +25,27 @@
     <section class="menu-container">
         @foreach($dish as $item)
             <div class="dish-card" data-category="{{ $item->dish_category }}">
-                <!-- <h4>{ $item->dish_name }}</h4>-->
                 <h4>{{ app()->getLocale() === 'en' ? $item->dish_name_en : $item->dish_name }}</h4> <!-- to display also in english when needed-->
                 <div class="img-box">
-                    <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->dish_name }}">
+                    @php
+                        $imagePath = Str::startsWith($item->image, 'images/')
+                            ? asset($item->image) // seeder photo from public/images
+                            : asset('storage/' . $item->image); // admin photo from storage/app/public/dishes
+                    @endphp
+
+                    <img src="{{ $imagePath }}" alt="{{ $item->dish_name }}">
                 </div>
-                <!--<p>{ $item->dish_description }}</p>-->
                 <p>{{ app()->getLocale() === 'en' ? $item->dish_description_en : $item->dish_description }}</p>
-                <h3>{{ $item->dish_price }}</h3>
-
-                <a class="add-to-cart" href="{{url('add_to_cart', $item->id)}}">{{ __('menu.add_to_cart') }}</a>
-
+                
+                <div class="card-footer">
+                    <h3>{{ $item->dish_price }}</h3>
+                    <a class="add-to-cart" href="{{url('add_to_cart', $item->id)}}">{{ __('menu.add_to_cart') }}</a>
+                </div>
             </div>
         @endforeach
     </section>
 
-    <!-- JS script for category-->
+    <!-- JS script for category dropdown-->
     <script>
         function filterDishes() {
             const category = document.getElementById('category-select').value;
@@ -51,7 +56,7 @@
             dishes.forEach(dish => {
                 console.log(`Dish category: ${dish.getAttribute('data-category')}`);
                 if (category === 'all' || dish.getAttribute('data-category') === category) {
-                    dish.style.display = 'block';
+                    dish.style.display = 'flex';
                 } else {
                     dish.style.display = 'none';
                 }

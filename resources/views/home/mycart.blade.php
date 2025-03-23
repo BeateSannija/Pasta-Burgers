@@ -32,10 +32,16 @@
 
     @foreach($cart as $item)
             <tr>
-                <!-- <td>{$item->dish->dish_name}}</td>-->
                 <td>{{ app()->getLocale() === 'en' ? $item->dish->dish_name_en : $item->dish->dish_name }}</td>
                 <td>{{$item->dish->dish_price}}</td>
-                <td><img width="100" src="{{ asset('storage/' . $item->dish->image) }}"></td>
+                <td>
+                    @php
+                        $imagePath = Str::startsWith($item->dish->image, 'images/')
+                            ? asset($item->dish->image) // seeder photo from public/images
+                            : asset('storage/' . $item->dish->image); // admin photo from storage/app/public/dishes
+                    @endphp
+                    <img width="100" src="{{ $imagePath }}" alt="{{ $item->dish->dish_name }}">
+                </td>
 
                 <!-- remove button-->
                 <td><a class="remove-item" href="{{url('remove_item', $item->id)}}">{{ __('cart.remove')}}</a></td>
