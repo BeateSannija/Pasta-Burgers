@@ -15,17 +15,14 @@ use App\Models\OrderItem;
 
 class HomeController extends Controller
 {
-    public function login_home()        //changed place
+    public function login_home()        
     {
-        // for the cart item count
-        $user = Auth::user();   //checking if user has logged in
+        $user = Auth::user(); 
         $userid = $user->id;
         $count = Cart::where('user_id',$userid)->count();
         $randomDishes = Dish::inRandomOrder()->take(2)->get();
         return view('home.index', compact('count', 'randomDishes'));
     }
-
-    
 
     public function home()
     {
@@ -39,7 +36,7 @@ class HomeController extends Controller
             $cart = Cart::where('user_id', $userid)->whereNull('order_id')->get();
         }
 
-        $randomDishes = Dish::inRandomOrder()->take(2)->get();  //chooses 2 random dishes to show on banner
+        $randomDishes = Dish::inRandomOrder()->take(2)->get();
 
         return view('home.index', compact('count', 'randomDishes'));
     }
@@ -92,7 +89,6 @@ class HomeController extends Controller
             $count = 0;
             $cart = collect();
         }
-
         return view('home.mycart', compact('count', 'cart'));
 
         
@@ -107,7 +103,6 @@ class HomeController extends Controller
             $userid = $user->id;
             $count = Cart::where('user_id', $userid)->whereNull('order_id')->count();
         }
-
         return response()->json(['count' => $count]);
     }
 
@@ -128,7 +123,6 @@ class HomeController extends Controller
             return redirect()->back()->with('error', 'Your cart is empty.');
         }
 
-        // Create a new order
         $order = Order::create([
             'user_id' => $user->id,
             'name' => $user->name,
@@ -142,13 +136,11 @@ class HomeController extends Controller
             $cartItem->order_id = $order->id;
             $cartItem->save();
         }
-
         return redirect()->route('home')->with('success', 'Your order has been placed successfully!');
     }
 
     public function myorders()
     {
-
         $count = 0;
         $cart = collect();
         $orders = collect(); // Initialize an empty collection
@@ -160,8 +152,6 @@ class HomeController extends Controller
             $cart = Cart::where('user_id', $userid)->whereNull('order_id')->get();
             $orders = Order::with('cartItems.dish')->where('user_id', $userid)->get(); // Fetch orders with related cart items and dishes
         }
-        
-
         return view('home.orders', compact('count', 'orders'));
     }
     
