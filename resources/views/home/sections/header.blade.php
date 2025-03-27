@@ -11,15 +11,13 @@
 
 <nav class="navbar">
     <ul id="navbar-list">
-        <!--<li class="nav-item"><a href="{{ route('home') }}"><img id="logo" src="images/PASTA-BURGERS-uzraksts-bez-fona.png" alt="Pasta Burgers"></a></li>-->
         <li class="nav-item"><a href="{{ route('home') }}">{{ __('homepage.index') }}</a></li>
         <li class="nav-item"><a href="{{url('view_menu')}}">{{ __('homepage.menu') }}</a></li>
         <li class="nav-item"><a href="">{{ __('homepage.about_us') }}</a></li>
         <li class="nav-item"><a href="">{{ __('homepage.contact_us') }}</a></li>
         
     @if (Route::has('login'))
-        @auth
-        <!--<li class="nav-item"><a href="{url('mycart')}}"><img id="cart" src="images\shopping-cart.png" alt="Grozs">[{$count}}]</a></li> <--add href to cart page and add icon-->   
+        @auth   
         
         <li class="nav-item">
             <a href="{{url('myorders')}}">
@@ -41,8 +39,8 @@
         </li>
     
         @else
-        <li class="nav-item"><a href="{{url('/login')}}">{{ __('homepage.log_in') }}</a></li> <!--add href to login page-->
-        <li class="nav-item"><a href="{{url('/register')}}">{{ __('homepage.register') }}</a></li> <!--add href to login page-->
+        <li class="nav-item"><a href="{{url('/login')}}">{{ __('homepage.log_in') }}</a></li>
+        <li class="nav-item"><a href="{{url('/register')}}">{{ __('homepage.register') }}</a></li> 
         
 
         @endauth
